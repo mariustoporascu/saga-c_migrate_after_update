@@ -37,7 +37,7 @@ for directory in directories_with_backup:
             # if file is societ.dbf
         else:
             # write into a skippedfiles.txt the name of the file, the date and time
-            with open("pylogs/skippedfiles.csv", "a") as logs_file:
+            with open("pylogs/skippedfiles.csv", "a", encoding='utf-8') as logs_file:
                 logs_file.write(f"{datetime.datetime.now().strftime('%H:%M:%S')},{file}\n")
 
 with open("free.txt", "w") as file:

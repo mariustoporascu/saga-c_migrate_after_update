@@ -7,6 +7,7 @@ from readsagavers import read_version_info
 
 
 def transfer_rows(old_file:str, new_file: str):
+    print(f"Transferring rows from {old_file} to {new_file}...")
     # Open the old and new DBF files
     with dbf.Table(old_file) as old_table, dbf.Table(new_file) as new_table:
         # Find common fields between the two tables
@@ -21,7 +22,7 @@ def transfer_rows(old_file:str, new_file: str):
                     # write the record in a commonrecords.txt
                     # date and time, new_file, record
                     # date and time, old_file, record
-                    with open("pylogs/commonrecords.csv", "a") as file:
+                    with open("pylogs/commonrecords.csv", "a", encoding='utf-8') as file:
                         file.write(f"{datetime.datetime.now().strftime('%H:%M:%S')},{new_file},{json.dumps(new_record.__str__())}\n")
                         file.write(f"{datetime.datetime.now().strftime('%H:%M:%S')},{old_file},{json.dumps(old_record.__str__())}\n")
                     has_record = True
@@ -60,7 +61,7 @@ def transfer_rows(old_file:str, new_file: str):
                         new_record_data[field] = field_type.__init__()
                 # write the record in a newrecords.txt
                 # date and time, new_file, record
-                with open("pylogs/newrecords.csv", "a") as file:
+                with open("pylogs/newrecords.csv", "a", encoding='utf-8') as file:
                     file.write(f"{datetime.datetime.now().strftime('%H:%M:%S')},{new_file},{new_record_data}\n")
                 new_table.append(new_record_data)
 
