@@ -1,9 +1,9 @@
-SET LIST OFF;
-SET HEADING ON;
+SET LIST ON;
 SET ECHO OFF;
+SET HEADING OFF;
 SET TERM ^ ;
 
-SELECT 
+SELECT
     rf.rdb$relation_name AS table_name,
     rf.rdb$field_name AS column_name,
     f.rdb$field_type AS field_type_code,
